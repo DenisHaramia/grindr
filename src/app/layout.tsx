@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="sk">
       <body>
-          <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+          <div style={{ minHeight: '92vh', display: 'flex', flexDirection: 'column' }}>
             <main style={{ flexGrow: 1 }}>
               {children}
             </main>
