@@ -2,10 +2,11 @@
 
 import { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/NavBar";
+import Navbar from "../components/NavBar";
+import AuthProvider from "../components/AuthProvider";
 
 export const metadata: Metadata = {
-  title: "SnapZoška",
+  title: "Grindr",
   description: "Created by students of SPŠE Zochova 9, Bratislava",
 };
 
@@ -17,12 +18,14 @@ export default function RootLayout({
   return (
     <html lang="sk">
       <body>
+        <AuthProvider>
           <div style={{ minHeight: '92vh', display: 'flex', flexDirection: 'column' }}>
             <main style={{ flexGrow: 1 }}>
               {children}
             </main>
           </div>
           <Navbar /> {/* Moved Navbar outside of the main container */}
+        </ AuthProvider>
       </body>
     </html>
   );
