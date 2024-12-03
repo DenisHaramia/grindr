@@ -1,7 +1,6 @@
 // src/app/page.tsx
 
 import UserProfile from "@/components/UserProfile"
-import Typography from "@mui/material/Typography";
 
 export const metadata = { title: "Home" };
 
