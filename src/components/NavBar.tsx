@@ -12,7 +12,6 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import LoginIcon from '@mui/icons-material/Login';
 import { useRouter } from 'next/navigation';
-
 export default function SimpleBottomNavigation() {
   const { data: session } = useSession();
   const [value, setValue] = React.useState(0);
