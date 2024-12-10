@@ -1,4 +1,4 @@
-// src/components/NavBar.tsx
+// src/app/components/NavBar.tsx
 
 "use client";
 
@@ -12,10 +12,18 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import LoginIcon from '@mui/icons-material/Login';
 import { useRouter } from 'next/navigation';
+import IconButton from '@mui/material/IconButton';
+import { useThemeContext } from '../components/ThemeContext'; // Import the custom hook for theme
+
+import { WbSunny as SunIcon, NightsStay as MoonIcon } from '@mui/icons-material'; // Icons for Sun and Moon
+
 export default function SimpleBottomNavigation() {
   const { data: session } = useSession();
   const [value, setValue] = React.useState(0);
   const router = useRouter();
+
+  // Access theme context
+  const { themeMode, toggleTheme } = useThemeContext();
 
   const handleNavigation = (newValue: number) => {
     setValue(newValue);
@@ -51,6 +59,7 @@ export default function SimpleBottomNavigation() {
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
+        position: 'relative', // So the theme button is positioned at the top-right corner
       }}
     >
       <BottomNavigation
@@ -65,16 +74,30 @@ export default function SimpleBottomNavigation() {
         <BottomNavigationAction label="Pridať" icon={<AddCircleIcon />} />
 
         {!session ? (
-          <BottomNavigationAction label="Register" icon= {<AppRegistrationIcon/>} />
-        ):(
+          <BottomNavigationAction label="Register" icon={<AppRegistrationIcon />} />
+        ) : (
           <></>
         )}
         {!session ? (
-          <BottomNavigationAction label="Login" icon= {<LoginIcon/>} />
-        ):(
-          <BottomNavigationAction label="Logout" icon= {<LoginIcon/>} />
+          <BottomNavigationAction label="Login" icon={<LoginIcon />} />
+        ) : (
+          <BottomNavigationAction label="Logout" icon={<LoginIcon />} />
         )}
       </BottomNavigation>
+
+      {/* Theme Toggle Button - Positioned at the top-right */}
+      <IconButton
+        sx={{
+          position: 'absolute',
+          top: 10,
+          right: 10,
+          backgroundColor: 'rgba(255, 255, 255, 0,3)', // Slight background to make it stand out
+          borderRadius: '50%',
+        }}
+        onClick={toggleTheme}
+      >
+        {themeMode === 'dark' ? <SunIcon /> : <MoonIcon />}
+      </IconButton>
     </Box>
   );
 }
